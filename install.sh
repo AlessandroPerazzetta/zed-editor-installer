@@ -113,7 +113,7 @@ main() {
     # Extract tarball to installation_path/zed-${channel} getting rid of the top-level directory
     tar -xzf "$temp/$tarball" -C "$installation_path/zed-${channel}" --strip-components=1
 
-    echo "Zed has been installed to $dest/zed-${channel}"
+    echo "Zed has been installed to $installation_path/zed-${channel}"
     echo "To run Zed from your terminal, add $installation_path/zed-${channel}/bin to your PATH"
     echo "For example, you can add the following line to your shell profile:"
     echo 'export PATH="$HOME/.local/bin:$PATH"'
