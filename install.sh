@@ -27,10 +27,17 @@ download() {
 
 # Integration with an XDG-compatible desktop environment, need to install the .desktop file
 xdg_install() {
+    # Determine the real user's home directory, even when run as sudo
+    if [ -n "${SUDO_USER:-}" ]; then
+        user_home=$(getent passwd "$SUDO_USER" | cut -d: -f6)
+    else
+        user_home="$HOME"
+    fi
+
     if [ -n "${XDG_DATA_HOME:-}" ]; then
         data_home="$XDG_DATA_HOME"
     else
-        data_home="$HOME/.local/share"
+        data_home="$user_home/.local/share"
     fi
 
     cp "$installation_path/zed-${channel}/share/applications/zed.desktop" "$data_home/applications/dev.zed.Zed.desktop"
